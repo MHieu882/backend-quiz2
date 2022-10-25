@@ -3,26 +3,30 @@ const moment = require('moment-timezone');
 
 
 function findtoStartEndofMoth(date,timezone="Africa/Freetown"){
+    if(date.getDate()==1){
+        date=moment(date).add(1,'day')
+    }
     const startOfMonth= moment(date).tz(timezone).startOf('month').format();
     const endOfMonth= moment(date).tz(timezone).endOf('month').format();
     return {
         startOfMonth,
         endOfMonth
     }
-
 }
- 
-console.log(findtoStartEndofMoth(new Date('February 1, 2018 23:15:30'),'America/Toronto'));
+console.log(findtoStartEndofMoth(new Date('October 1, 2022'),'Antarctica/Mawson'));
 
 function mtdperiod(date,timezone="Africa/Freetown"){
+    if(date.getDate()==1){
+        date=moment(date).add(1,'day')
+    }
     const startOfMonth= moment(date).tz(timezone).startOf('month').format();
     const presentday= moment(date).tz(timezone).endOf('day').format();
     return {
         startOfMonth,
-        presentday,
+        presentday
     }
 }
-console.log(mtdperiod(new Date('August 19, 1975')));
+console.log(mtdperiod(new Date('October 1, 2022'),'Antarctica/Mawson'));
 
 function MonSun(date,timezone="Africa/Freetown"){
     const newdate= date.setDate(date.getDate()-7);
@@ -33,5 +37,5 @@ function MonSun(date,timezone="Africa/Freetown"){
         SundayLw
     }
 }
-console.log(MonSun(new Date('October 24, 2022'),'Asia/Ho_Chi_Minh'));// return 17-23
+console.log(MonSun(new Date('October 1, 2022'),'Asia/Ho_Chi_Minh'));// return 17-23
 
